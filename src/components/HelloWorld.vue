@@ -2,10 +2,13 @@
 import { ref } from "vue";
 import { ElMessage } from "element-plus";
 
-defineProps<{ msg: string }>();
+defineProps<{ msg?: string }>();
 
 const count = ref(0);
 const input = ref("element-plus");
+
+const checked = ref(true);
+const checkList = ref(["Option A", "Option B"]);
 
 const curDate = ref("");
 
@@ -15,7 +18,7 @@ const toast = () => {
 </script>
 
 <template>
-  <h1 color="$ep-color-primary">{{ msg }}</h1>
+  <h1 color="$ep-color-primary" v-if="msg">{{ msg }}</h1>
 
   <p>
     See
@@ -53,8 +56,20 @@ const toast = () => {
       placeholder="Pick a day"
     ></el-date-picker>
   </div>
+  <!-- 체크 박스 예제 -->
+  <div class="my-2">
+    <el-checkbox v-model="checked">Option</el-checkbox>
+    <el-checkbox-group v-model="checkList">
+      <el-checkbox label="Option A"></el-checkbox>
+      <el-checkbox label="Option B"></el-checkbox>
+      <el-checkbox label="Option C"></el-checkbox>
+      <el-checkbox label="Option D"></el-checkbox>
+    </el-checkbox-group>
+    <div>Checked: {{ checked }}</div>
+    <div>CheckList: {{ checkList }}</div>
+  </div>
 
-  <p>For example, we can custom primary color to 'green'.</p>
+  <p>Test... For example, we can custom primary color to 'green'.</p>
 
   <p>
     Edit
